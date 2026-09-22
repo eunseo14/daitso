@@ -108,7 +108,7 @@ export default function FarmsPage() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold text-gray-500 mb-2.5">인증현황</p>
+            <p className="text-xs font-semibold text-gray-500 mb-2.5">인증정보</p>
             <div className="flex gap-3">
               {CERTS.map(cert => (
                 <label key={cert} className="flex items-center gap-1.5 cursor-pointer">
