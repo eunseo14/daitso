@@ -17,7 +17,8 @@ export const farms = [
     galleryImages: [
       '/images/farm-yabes-g1.png',
       '/images/farm-yabes-g2.png',
-      '/images/farm-yabes-g3.jpg',
+      '/images/farm-yabes-g3.png',
+      '/images/farm-yabes-g5.png',
       '/images/farm-yabes-g4.png',
     ],
     story: [
