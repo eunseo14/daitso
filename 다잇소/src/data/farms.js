@@ -16,7 +16,7 @@ export const farms = [
     heroImagePosition: '15%',
     galleryImages: [
       '/images/farm-yabes-g1.png',
-      '/images/farm-yabes-g2.jpg',
+      '/images/farm-yabes-g2.png',
       '/images/farm-yabes-g3.jpg',
       '/images/farm-yabes-g4.png',
     ],
