@@ -9,6 +9,7 @@ const CATEGORIES = ['전체', '유제품', '농산물'];
 
 export default function ListingsPage() {
   const navigate = useNavigate();
+  const [search, setSearch] = useState('');
   const [region, setRegion] = useState('전체');
   const [type, setType] = useState('전체');
   const [category, setCategory] = useState('전체');
@@ -16,7 +17,9 @@ export default function ListingsPage() {
   const [endDate, setEndDate] = useState('');
 
   const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
     return listings.filter(l => {
+      if (q && !l.storeName.toLowerCase().includes(q) && !l.location.toLowerCase().includes(q)) return false;
       if (region !== '전체' && l.region !== region) return false;
       if (type !== '전체' && l.type !== type) return false;
       if (category !== '전체' && l.category !== category) return false;
@@ -28,7 +31,7 @@ export default function ListingsPage() {
       }
       return true;
     });
-  }, [region, type, category, startDate, endDate]);
+  }, [search, region, type, category, startDate, endDate]);
 
   return (
     <div>
@@ -45,6 +48,22 @@ export default function ListingsPage() {
             + 공고 등록
           </button>
         </div>
+      </div>
+
+      <div className="relative mb-4">
+        <input
+          type="text"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          placeholder="판매처명, 지역으로 검색"
+          className="w-full text-sm border border-gray-200 rounded-xl px-4 py-2.5 pl-9 text-gray-700 focus:outline-none focus:border-primary"
+        />
+        <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+        </svg>
+        {search && (
+          <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs">✕</button>
+        )}
       </div>
 
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 mb-6 space-y-3">
